@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "publicacions",
+  "info": {
+    "singularName": "publicacion",
+    "pluralName": "publicacions",
+    "displayName": "Publicación",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Titulo": {
+      "type": "string"
+    },
+    "Contenido_JSON": {
+      "type": "blocks"
+    },
+    "portada": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Contenido_Markdown": {
+      "type": "richtext"
+    },
+    "clave": {
+      "type": "uid"
+    },
+    "featured": {
+      "type": "boolean"
+    },
+    "SuperFeatured": {
+      "type": "boolean"
+    },
+    "Resumen": {
+      "type": "text"
+    }
+  }
+}

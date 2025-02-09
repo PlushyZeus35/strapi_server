@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gatos",
+  "info": {
+    "singularName": "gato",
+    "pluralName": "gatos",
+    "displayName": "Gato",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nombre": {
+      "type": "string"
+    },
+    "Descripcion": {
+      "type": "text"
+    },
+    "imagen": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "kind": "collectionType",
+  "collectionName": "finanzas",
+  "info": {
+    "singularName": "finanza",
+    "pluralName": "finanzas",
+    "displayName": "Finanzas",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nombre": {
+      "type": "string"
+    },
+    "Concepto": {
+      "type": "string"
+    },
+    "Fecha_valor": {
+      "type": "date"
+    },
+    "Tipologia": {
+      "type": "enumeration",
+      "enum": [
+        "Gasto",
+        "Ingreso",
+        "Inversion"
+      ]
+    },
+    "Categoria": {
+      "type": "enumeration",
+      "enum": [
+        "Salud y Bienestar",
+        "Moda y Accesorios",
+        "Regalos y Donaciones",
+        "Tecnologia",
+        "Comida y Bebidas",
+        "Entretenimiento",
+        "Medios y Suscripciones Digitales",
+        "Transporte y Viajes",
+        "Servicios del Hogar",
+        "Ingresos",
+        "Mascotas",
+        "Inversiones"
+      ]
+    },
+    "Subcategoria": {
+      "type": "enumeration",
+      "enum": [
+        "Farmacia",
+        "Cuidado Personal",
+        "Ropa",
+        "Accesorios",
+        "Calzado",
+        "Regalos",
+        "Donaciones",
+        "Gadgets",
+        "Software y Aplicaciones",
+        "Servicios en la Nube y Hosting",
+        "Mantenimiento y Reparaciones",
+        "Restaurantes y Bares",
+        "Supermercado",
+        "Entrega a Domicilio",
+        "Suscripciones de Alimentos y Bebidas",
+        "Cine y Teatro",
+        "Videojuegos",
+        "Libros y Revistas",
+        "Eventos y Actividades",
+        "Musica y Audio",
+        "Video y Streaming",
+        "Prensa y Revistas",
+        "Transporte Local",
+        "Viajes y Vacaciones",
+        "Alquiler de Vehiculos",
+        "Servicios Basicos",
+        "Internet y Telecomunicaciones",
+        "Alquiler e Hipoteca",
+        "Nomina",
+        "Otros Ingresos",
+        "Alimento y Nutricion",
+        "Cuidado Veterinario",
+        "Accesorios y Juguetes",
+        "Mercado de Valores",
+        "Inversiones en Bienes Raices",
+        "Criptomonedas",
+        "Inversiones Alternativas",
+        "Cuentas de Retiro",
+        "Educacion y Formacion"
+      ]
+    },
+    "Cantidad": {
+      "type": "decimal"
+    },
+    "ExternalId": {
+      "type": "uid"
+    }
+  }
+}

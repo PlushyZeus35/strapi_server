@@ -369,6 +369,48 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAiLogAiLog extends Struct.CollectionTypeSchema {
+  collectionName: 'ai_logs';
+  info: {
+    displayName: 'AI Log';
+    pluralName: 'ai-logs';
+    singularName: 'ai-log';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    completionTokens: Schema.Attribute.BigInteger;
+    created: Schema.Attribute.BigInteger;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ai-log.ai-log'
+    > &
+      Schema.Attribute.Private;
+    model: Schema.Attribute.String;
+    promptTokens: Schema.Attribute.BigInteger;
+    publishedAt: Schema.Attribute.DateTime;
+    requestID: Schema.Attribute.UID;
+    requestStatus: Schema.Attribute.Enumeration<
+      ['pending', 'success', 'error']
+    >;
+    response: Schema.Attribute.Text;
+    totalTokens: Schema.Attribute.BigInteger;
+    type: Schema.Attribute.Enumeration<['free', 'meal']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiContactoContacto extends Struct.CollectionTypeSchema {
   collectionName: 'contactos';
   info: {
@@ -1100,6 +1142,7 @@ export interface PluginUsersPermissionsUser
     timestamps: true;
   };
   attributes: {
+    ai_logs: Schema.Attribute.Relation<'oneToMany', 'api::ai-log.ai-log'>;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1151,6 +1194,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::ai-log.ai-log': ApiAiLogAiLog;
       'api::contacto.contacto': ApiContactoContacto;
       'api::finanza.finanza': ApiFinanzaFinanza;
       'api::gato.gato': ApiGatoGato;

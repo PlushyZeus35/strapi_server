@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ai_logs",
+  "info": {
+    "singularName": "ai-log",
+    "pluralName": "ai-logs",
+    "displayName": "AI Log"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "requestID": {
+      "type": "uid"
+    },
+    "created": {
+      "type": "biginteger"
+    },
+    "model": {
+      "type": "string"
+    },
+    "completionTokens": {
+      "type": "biginteger"
+    },
+    "promptTokens": {
+      "type": "biginteger"
+    },
+    "totalTokens": {
+      "type": "biginteger"
+    },
+    "response": {
+      "type": "text"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "ai_logs"
+    },
+    "requestStatus": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "success",
+        "error"
+      ]
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "free",
+        "meal"
+      ]
+    }
+  }
+}

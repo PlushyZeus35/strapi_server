@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "diet_types",
+  "info": {
+    "singularName": "diet-type",
+    "pluralName": "diet-types",
+    "displayName": "DietType",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "Hero": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "MainColor": {
+      "type": "string"
+    },
+    "SecondaryColor": {
+      "type": "string"
+    },
+    "HeroSecondary": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

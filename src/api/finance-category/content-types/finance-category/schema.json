@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "finance_categories",
+  "info": {
+    "singularName": "finance-category",
+    "pluralName": "finance-categories",
+    "displayName": "Finance category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Type": {
+      "type": "enumeration",
+      "enum": [
+        "Gasto",
+        "Ingreso",
+        "Inversion"
+      ]
+    },
+    "IsActive": {
+      "type": "boolean"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "Icon": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "Color": {
+      "type": "string"
+    },
+    "Keywords": {
+      "type": "json"
+    },
+    "subcategories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::finance-category.finance-category",
+      "mappedBy": "parent"
+    },
+    "parent": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::finance-category.finance-category",
+      "inversedBy": "subcategories"
+    }
+  }
+}

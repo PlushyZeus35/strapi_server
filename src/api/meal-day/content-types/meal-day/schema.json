@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "meal_days",
+  "info": {
+    "singularName": "meal-day",
+    "pluralName": "meal-days",
+    "displayName": "MealDay",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Day": {
+      "type": "string"
+    },
+    "Lunch": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::meal.meal"
+    },
+    "Dinner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::meal.meal"
+    },
+    "MealMenu": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::meal-menu.meal-menu",
+      "inversedBy": "MealDays"
+    }
+  }
+}

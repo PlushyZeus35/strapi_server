@@ -52,6 +52,12 @@
         "free",
         "meal"
       ]
+    },
+    "MealMenu": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::meal-menu.meal-menu",
+      "mappedBy": "AILog"
     }
   }
 }

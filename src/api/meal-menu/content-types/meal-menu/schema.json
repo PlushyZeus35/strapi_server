@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "meal_menus",
+  "info": {
+    "singularName": "meal-menu",
+    "pluralName": "meal-menus",
+    "displayName": "MealMenu",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "version": {
+      "type": "string"
+    },
+    "User": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "MealMenus"
+    },
+    "MealDays": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::meal-day.meal-day",
+      "mappedBy": "MealMenu"
+    },
+    "AILog": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::ai-log.ai-log",
+      "inversedBy": "MealMenu"
+    },
+    "Difficulty": {
+      "type": "string"
+    },
+    "diet_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::diet-type.diet-type"
+    }
+  }
+}

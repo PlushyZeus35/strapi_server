@@ -369,6 +369,49 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAiLogAiLog extends Struct.CollectionTypeSchema {
+  collectionName: 'ai_logs';
+  info: {
+    displayName: 'AI Log';
+    pluralName: 'ai-logs';
+    singularName: 'ai-log';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    completionTokens: Schema.Attribute.BigInteger;
+    created: Schema.Attribute.BigInteger;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ai-log.ai-log'
+    > &
+      Schema.Attribute.Private;
+    MealMenu: Schema.Attribute.Relation<'oneToOne', 'api::meal-menu.meal-menu'>;
+    model: Schema.Attribute.String;
+    promptTokens: Schema.Attribute.BigInteger;
+    publishedAt: Schema.Attribute.DateTime;
+    requestID: Schema.Attribute.UID;
+    requestStatus: Schema.Attribute.Enumeration<
+      ['pending', 'success', 'error']
+    >;
+    response: Schema.Attribute.Text;
+    totalTokens: Schema.Attribute.BigInteger;
+    type: Schema.Attribute.Enumeration<['free', 'meal']>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiContactoContacto extends Struct.CollectionTypeSchema {
   collectionName: 'contactos';
   info: {
@@ -393,6 +436,83 @@ export interface ApiContactoContacto extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     Nombre: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDietTypeDietType extends Struct.CollectionTypeSchema {
+  collectionName: 'diet_types';
+  info: {
+    description: '';
+    displayName: 'DietType';
+    pluralName: 'diet-types';
+    singularName: 'diet-type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Description: Schema.Attribute.Text;
+    Hero: Schema.Attribute.Media<'images' | 'files'>;
+    HeroSecondary: Schema.Attribute.Media<'images' | 'files'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::diet-type.diet-type'
+    > &
+      Schema.Attribute.Private;
+    MainColor: Schema.Attribute.String;
+    Name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    SecondaryColor: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiFinanceCategoryFinanceCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'finance_categories';
+  info: {
+    displayName: 'Finance category';
+    pluralName: 'finance-categories';
+    singularName: 'finance-category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Color: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Description: Schema.Attribute.Text;
+    Icon: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    IsActive: Schema.Attribute.Boolean;
+    Keywords: Schema.Attribute.JSON;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::finance-category.finance-category'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    parent: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::finance-category.finance-category'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    subcategories: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::finance-category.finance-category'
+    >;
+    Type: Schema.Attribute.Enumeration<['Gasto', 'Ingreso', 'Inversion']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -434,6 +554,14 @@ export interface ApiFinanzaFinanza extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     ExternalId: Schema.Attribute.UID;
     Fecha_valor: Schema.Attribute.Date;
+    finance_category: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::finance-category.finance-category'
+    >;
+    finance_subcategory: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::finance-category.finance-category'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -603,6 +731,147 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
           localized: true;
         };
       }>;
+  };
+}
+
+export interface ApiIngredientIngredient extends Struct.CollectionTypeSchema {
+  collectionName: 'ingredients';
+  info: {
+    displayName: 'Ingredient';
+    pluralName: 'ingredients';
+    singularName: 'ingredient';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ingredient.ingredient'
+    > &
+      Schema.Attribute.Private;
+    Meal: Schema.Attribute.Relation<'manyToOne', 'api::meal.meal'>;
+    Name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMealDayMealDay extends Struct.CollectionTypeSchema {
+  collectionName: 'meal_days';
+  info: {
+    description: '';
+    displayName: 'MealDay';
+    pluralName: 'meal-days';
+    singularName: 'meal-day';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Day: Schema.Attribute.String;
+    Dinner: Schema.Attribute.Relation<'oneToOne', 'api::meal.meal'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::meal-day.meal-day'
+    > &
+      Schema.Attribute.Private;
+    Lunch: Schema.Attribute.Relation<'oneToOne', 'api::meal.meal'>;
+    MealMenu: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::meal-menu.meal-menu'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMealMenuMealMenu extends Struct.CollectionTypeSchema {
+  collectionName: 'meal_menus';
+  info: {
+    description: '';
+    displayName: 'MealMenu';
+    pluralName: 'meal-menus';
+    singularName: 'meal-menu';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    AILog: Schema.Attribute.Relation<'oneToOne', 'api::ai-log.ai-log'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    diet_type: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::diet-type.diet-type'
+    >;
+    Difficulty: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::meal-menu.meal-menu'
+    > &
+      Schema.Attribute.Private;
+    MealDays: Schema.Attribute.Relation<'oneToMany', 'api::meal-day.meal-day'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    User: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    version: Schema.Attribute.String;
+  };
+}
+
+export interface ApiMealMeal extends Struct.CollectionTypeSchema {
+  collectionName: 'meals';
+  info: {
+    displayName: 'Meal';
+    pluralName: 'meals';
+    singularName: 'meal';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Calories: Schema.Attribute.Integer;
+    Carbohydrates: Schema.Attribute.Integer;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Difficulty: Schema.Attribute.String;
+    Fats: Schema.Attribute.Integer;
+    Fiber: Schema.Attribute.Integer;
+    Ingredients: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ingredient.ingredient'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::meal.meal'> &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    PreparationTime: Schema.Attribute.Integer;
+    Proteins: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    SatietyIndex: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1100,6 +1369,7 @@ export interface PluginUsersPermissionsUser
     timestamps: true;
   };
   attributes: {
+    ai_logs: Schema.Attribute.Relation<'oneToMany', 'api::ai-log.ai-log'>;
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1117,6 +1387,10 @@ export interface PluginUsersPermissionsUser
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
+    MealMenus: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::meal-menu.meal-menu'
+    >;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{
@@ -1151,10 +1425,17 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::ai-log.ai-log': ApiAiLogAiLog;
       'api::contacto.contacto': ApiContactoContacto;
+      'api::diet-type.diet-type': ApiDietTypeDietType;
+      'api::finance-category.finance-category': ApiFinanceCategoryFinanceCategory;
       'api::finanza.finanza': ApiFinanzaFinanza;
       'api::gato.gato': ApiGatoGato;
       'api::home-page.home-page': ApiHomePageHomePage;
+      'api::ingredient.ingredient': ApiIngredientIngredient;
+      'api::meal-day.meal-day': ApiMealDayMealDay;
+      'api::meal-menu.meal-menu': ApiMealMenuMealMenu;
+      'api::meal.meal': ApiMealMeal;
       'api::publicacion.publicacion': ApiPublicacionPublicacion;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

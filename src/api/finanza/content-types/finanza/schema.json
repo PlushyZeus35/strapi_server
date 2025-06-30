@@ -95,6 +95,16 @@
     },
     "ExternalId": {
       "type": "uid"
+    },
+    "finance_category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::finance-category.finance-category"
+    },
+    "finance_subcategory": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::finance-category.finance-category"
     }
   }
 }

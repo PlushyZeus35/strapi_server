@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "meals",
+  "info": {
+    "singularName": "meal",
+    "pluralName": "meals",
+    "displayName": "Meal"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "PreparationTime": {
+      "type": "integer"
+    },
+    "Difficulty": {
+      "type": "string"
+    },
+    "Calories": {
+      "type": "integer"
+    },
+    "Proteins": {
+      "type": "integer"
+    },
+    "Carbohydrates": {
+      "type": "integer"
+    },
+    "Fats": {
+      "type": "integer"
+    },
+    "Fiber": {
+      "type": "integer"
+    },
+    "SatietyIndex": {
+      "type": "string"
+    },
+    "Ingredients": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ingredient.ingredient",
+      "mappedBy": "Meal"
+    }
+  }
+}
